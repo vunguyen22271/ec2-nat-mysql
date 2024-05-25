@@ -1,0 +1,1 @@
+terraform apply -replace="aws_instance.vm_2" -replace="aws_instance.private_vm_ubuntu_mysql" 

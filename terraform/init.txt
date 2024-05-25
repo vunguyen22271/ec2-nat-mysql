@@ -1,0 +1,21 @@
+<powershell>
+
+# Fast download
+$ProgressPreference = 'SilentlyContinue'
+
+# Download Chrome
+$url = "https://dl.google.com/chrome/install/latest/chrome_installer.exe"
+$output = "C:\chrome_installer.exe"
+Invoke-WebRequest -Uri $url -OutFile $output
+
+# Install Chrome
+Start-Process -FilePath $output -Args '/silent /install' -Verb RunAs -Wait
+
+# Install Choco via powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install MySQL via choco
+choco install mysql -y
+
+</powershell>
+
